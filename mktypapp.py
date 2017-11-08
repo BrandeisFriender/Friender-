@@ -14,6 +14,12 @@ def bio():
 def pitch():
 	return render_template('pitch.html')
 
+@app.route('/survey')
+def survey():
+	return render_template('survey.html')
+
+
+
 @app.route('/formdemo')
 def formdemo():
 	return render_template('formdemo.html')

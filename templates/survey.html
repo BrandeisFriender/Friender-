@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+  <h1>Survey</h1>
+</div>
+<div class="text-center">
+Here is where we learn how to create HTML elements....
+<ul>
+  <li>Organic Chemistry: $30 like new</li>
+  <li>Poetry of Robert Frost: $10, poor condition</li>
+  <li>Calculus: $20, good condition</li>
+<ul>
+<button class="btn btn-lg btn-primary">
+  Register as a seller
+</button>
+
+<hr>
+Your age: <input type="text" width="40" name="age"> <br>
+Your Bio:
+<textarea name="bio"></textarea>
+<br>
+How long is the wait?
+<select name="waittime">
+  <option>no line</option>
+  <option>under 5 mintues </option>
+  <option> 5-10 mintues</option>
+  <option>more than 10 mintues</option>
+</select>
+<br>
+<input type="submit">
+{% endblock %}
