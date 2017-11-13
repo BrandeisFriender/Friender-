@@ -7,8 +7,12 @@ def main():
 	return render_template("main.html")
 
 @app.route('/team')
-def bio():
+def team():
 	return render_template('team.html')
+
+@app.route('/about')
+def about():
+	return render_template('about.html')
 
 @app.route('/pitch')
 def pitch():
@@ -17,8 +21,6 @@ def pitch():
 @app.route('/survey')
 def survey():
 	return render_template('survey.html')
-
-
 
 @app.route('/formdemo')
 def formdemo():
