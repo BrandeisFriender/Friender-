@@ -14,6 +14,10 @@ def team():
 def about():
 	return render_template('about.html')
 
+@app.route('/arnell')
+def arnell():
+	return render_template('arnell.html')
+
 @app.route('/pitch')
 def pitch():
 	return render_template('pitch.html')
