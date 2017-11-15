@@ -17,6 +17,12 @@ def about():
 @app.route('/arnell')
 def arnell():
 	return render_template('arnell.html')
+@app.route('/jasmine')
+def jasmine():
+	return render_template('jasmine.html')
+@app.route('/dario')
+def dario():
+	return render_template('dario.html')
 
 @app.route('/pitch')
 def pitch():
