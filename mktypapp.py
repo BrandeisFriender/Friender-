@@ -37,7 +37,7 @@ def formdemo():
 	return render_template('formdemo.html')
 
 @app.route('/chat')
-def formdemo():
+def chat():
 	return render_template('chat.html')
 
 
