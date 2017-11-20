@@ -36,9 +36,17 @@ def survey():
 def formdemo():
 	return render_template('formdemo.html')
 
-@app.route('/chat')
+@app.route('/chat',methods=['GET','POST'])
 def chat():
-	return render_template('chat.html')
+ 	if request.method == 'POST':
+ 		msg = request.form['msg']
+ 		who = request.form['who']
+ 		now = datetime.now()
+ 		x = {'msg':msg,'now':now,'who':who}
+ 		messages.insert(0,x) # add msg to the front of the list
+ 		return render_template("chat.html",messages=messages)
+ else:
+ return render_template("chat.html",messages=[])
 
 
 if __name__ == '__main__':
