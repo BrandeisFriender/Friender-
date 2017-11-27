@@ -1,20 +1,3 @@
-<html>
-<head>
-  <link real"stylesheet" href"css.css">
-</head>
-<body>
-  <hl>Login Page</h1>
-    Username:<input type"text" name"username"><br/><br/>
-    Password:<input type="password" name="password"><br/><br/>
-    <input type"submit" name"submit" value"Login">
-
-
-
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-
-</body>
-</html>
 
 {% extends "base.html" %}
 {% block content %}
@@ -22,49 +5,51 @@
 <div class="jumbotron">
   <h1>Survey</h1>
 </div>
-
-<div class="text-center">
+<form method="GET" action="processSurvey">
+<div>
 Please answer the following questions in order for us to find people like YOU! :)
 <ul>
 
   <li>Where were you born?</li>
-  <input type="text" width="40" name="age"> <br>
-  <input type="submit">
+  <input type="text" width="40" name="birthplace"> <br>
+
 
 
   <li>What are your interests?</li>
-  <input type="text" width="40" name="age"> <br>
-  <input type="submit">
+  <input type="text" width="40" name="interests"> <br>
+
 
 
   <li>Are you a Freshmen, Sophmore, Junior or Senior?</li>
-  <input type="text" width="40" name="age"> <br>
-  <input type="submit">
+  <input type="text" width="40" name="year"> <br>
+
 
 
   <li>What TV shows did you use to watch as a kid?</li>
-  <input type="text" width="40" name="age"> <br>
-  <input type="submit">
+  <input type="text" width="40" name="TVshow"> <br>
+
 
 
   <li>What kind of music do you listen to?</li>
-  <input type="text" width="40" name="age"> <br>
-  <input type="submit">
+  <input type="text" width="40" name="music"> <br>
+
 
 
   <li>If you could have any magical power, what would it be?</li>
-  <input type="text" width="40" name="age"> <br>
-  <input type="submit">
+  <input type="text" width="40" name="magicalpower"> <br>
+
 
 
   <li>Tell us what do you like to eat! Favorite food!</li>
-  <input type="text" width="40" name="age"> <br>
-  <input type="submit">
+  <input type="text" width="40" name="favoritefood"> <br>
+
 
 
   <li>Do you have favorite holiday(s)? Which one(s)?</li>
-  <input type="text" width="40" name="age"> <br>
+  <input type="text" width="40" name="Favoriteholiday"> <br>
+  
   <input type="submit">
 
+</form>
 
 {% endblock %}
