@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+  <h1>Chat Demo</h1>
+  <p class="text-warning">
+    Chat below, but be nice!
+  </p>
+</div>
+<form method="POST" action="/chat">
+  yourname: <input type="text" name="who"><br>
+  message: <input type="text" name="msg"><br>
+  <input type="submit">
+</form>
+<div>
+
+{% for msg in messages %}
+ {{msg.who}}/{{msg.now}}: <strong>{{msg.msg}}</strong>
+ <br>
+{% endfor %}
+</div>
+
+{% endblock %}
