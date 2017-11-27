@@ -45,8 +45,8 @@ def chat():
  		x = {'msg':msg,'now':now,'who':who}
  		messages.insert(0,x) # add msg to the front of the list
  		return render_template("chat.html",messages=messages)
-	else:
- return render_template("chat.html",messages=[])
+ 	else:
+ 		return render_template("chat.html",messages=[])
 
 
 if __name__ == '__main__':
