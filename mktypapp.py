@@ -38,7 +38,7 @@ def formdemo():
 
 @app.route('/chat',methods=['GET','POST'])
 def chat():
- 	if request.method == 'POST':
+	if request.method == 'POST':
  		msg = request.form['msg']
  		who = request.form['who']
  		now = datetime.now()
@@ -46,7 +46,7 @@ def chat():
  		messages.insert(0,x) # add msg to the front of the list
  		return render_template("chat.html",messages=messages)
 	else:
- return render_template("chat.html",messages=[])
+		return render_template("chat.html",messages=[])
 
 
 if __name__ == '__main__':
