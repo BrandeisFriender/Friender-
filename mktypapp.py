@@ -140,21 +140,12 @@ def processSurvey():
 		b = request.form['birthplace']
 		i = request.form['interests']
 		y = request.form['year']
-		print("A")
 		t = request.form['TVshow']
-		print("B")
 		m = request.form['music']
-		print("C")
 		p = request.form['magicalpower']
-		print("D")
 		f = request.form['favoritefood']
-		print("E")
 		h = request.form['favoriteholiday']
-		print("F")
 		n = datetime.now()
-		print("G")
-		print(surveyCounter)
-		print("H")
 		survey = {
 			'id':surveyCounter,
 			'birthplace':b,
@@ -168,10 +159,8 @@ def processSurvey():
 			'time':n,
 			'who':who
 			}
-		print("I")
 		surveyCounter = surveyCounter + 1
 		surveys.insert(0,survey) # add msg to the front of the list
-		print(surveys)
 		return render_template("processSurvey.html",surveys=surveys)
 	else:
 		return render_template("processSurvey.html",surveys=surveys)
