@@ -13,8 +13,13 @@ from datetime import datetime
 
 
 app = Flask(__name__)
+# DEVELOPMENT at 127.0.0.1:5000
 app.config['GOOGLE_ID'] = '246096591118-ti33uv184e4m1bib9grgn8alm45btadb.apps.googleusercontent.com'
 app.config['GOOGLE_SECRET'] = 'iqgLqu6pXgLuHsZFq6nvxDX3'
+
+# PRODUCTION  at http://gracehopper.cs-i.brandeis.edu:5500
+#app.config['GOOGLE_ID'] = '246096591118-ti33uv184e4m1bib9grgn8alm45btadb.apps.googleusercontent.com'
+#app.config['GOOGLE_SECRET'] = 'iqgLqu6pXgLuHsZFq6nvxDX3'
 
 
 app.debug = True
@@ -116,6 +121,8 @@ def dario():
 def pitch():
 	return render_template('pitch.html')
 
+
+
 @app.route('/survey')
 @require_login
 def survey():
@@ -127,6 +134,7 @@ surveyCounter=0
 
 
 @app.route('/processSurvey',methods=['GET','POST'])
+@require_login
 def processSurvey():
 	global surveys
 	global surveyCounter
@@ -166,18 +174,38 @@ def processSurvey():
 		return render_template("processSurvey.html",surveys=surveys)
 
 
-friendRequests = []
+invites = []
+inviteCounter=0
 
 @app.route('/requestConnection',methods=['GET','POST'])
+@require_login
 def requestConnection():
+	print("inside requestConnection")
 	global surveys
-	global friendRequests
-	global friendCounter
+	global invites
+	global inviteCounter
 	print(request.form['surveyNumber'])
+	userinfo = session['userinfo']
+	who = userinfo['email']
 	if request.method == 'POST':
-		return render_template("friends.html",surveys=surveys)
-	else:
-		return render_template("friends.html",surveys=surveys)
+		friend = request.form['who']
+		now = datetime.now()
+		invite = {'id':inviteCounter,'inviter':who,'invitee':friend,'time':now}
+		inviteCounter = inviteCounter+1
+		invites.insert(0,invite)
+	print('invitations:')
+	for invite in invites:
+		print(invite)
+	myinvites = [invite for invite in invites if (invite['invitee']==who)]
+	return render_template("friends.html",surveys=surveys,myinvites=myinvites,invites=invites)
+
+@app.route('/friends')
+@require_login
+def friends():
+	userinfo = session['userinfo']
+	who = userinfo['email']
+	myinvites = [invite for invite in invites if (invite['invitee']==who)]
+	return render_template("friends.html",surveys=surveys,myinvites=myinvites,invites=invites)
 
 
 @app.route('/formdemo')
@@ -185,17 +213,20 @@ def formdemo():
 	return render_template('formdemo.html')
 
 @app.route('/chat',methods=['GET','POST'])
+@require_login
 def chat():
 	if request.method == 'POST':
- 		msg = request.form['msg']
- 		who = request.form['who']
- 		now = datetime.now()
- 		x = {'msg':msg,'now':now,'who':who}
- 		messages.insert(0,x) # add msg to the front of the list
- 		return render_template("chat.html",messages=messages)
+		userinfo = session['userinfo']
+		who = userinfo['email']
+		msg = request.form['msg']
+		now = datetime.now()
+		x = {'msg':msg,'now':now,'who':who}
+		messages.insert(0,x) # add msg to the front of the list
+		return render_template("chat.html",messages=messages)
 	else:
 		return render_template("chat.html",messages=[])
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0',port=5000)
+	app.run('127.0.0.1',port=5000) # DEVELOPMENT at 127.0.0.1:5000
+	#app.run('127.0.0.1',port=5500) # PRODUCTION at gracehopper.cs-i.brandeis.edu:5500

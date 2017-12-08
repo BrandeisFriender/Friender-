@@ -8,42 +8,78 @@
     Click on the "connect" button to send a Brandeis friender notification.
   </p>
 </div>
-<h2> Here we should have the list of people you have accepted as friends, with their emails</h2>
-fjdklsjfdls
+<h2> Invitations </h2>
 
-<h2> Here should be the outstanding requests</h2>
+	<div class="bg-info">
+		<ul>
+			{% for invite in myinvites %}
+				<li>
+					<form method="POST" action="/acceptRequest">
+						{{invite.inviter}} wants to meet you {{invite.invitee}}
+			 			<input type="hidden" name="surveyNumber" value="{{invite.id}}">
+			 			<input class="btn btn-sm btn-primary" type="submit" value="I accept!">
+		 			</form>
+					<br>
+		 		</li>
+		 {% endfor %}
+	 </ul>
+	</div>
+	<hr>
+	<h2> All Invitations  (DEBUGGING MODE) </h2>
+	<div class="bg-info">
+		<ul>
+			{% for invite in invites %}
+				<li>
+					<form method="POST" action="/acceptRequest">
+						{{invite.inviter}} wants to meet {{invite.invitee}}
+						<input type="hidden" name="surveyNumber" value="{{invite.id}}">
+						<input class="btn btn-sm btn-primary" type="submit" value="I accept!">
+					</form>
+					<br>
+				</li>
+		 {% endfor %}
+	 </ul>
+	</div>
 
+
+<hr>
+<hr>
+<hr>
 <div class="text-left">
-  <h2>This should be just the profiles of people
-    who want to meet you </h2>
-  {% for survey in surveys %}
-    <div class="bg-info">
-      <form method="POST" action="/requestConnection">
-         <h2>Potential Friend number {{survey.id}}</h2>
-         <ul>
-           <li><b>BirthPlace</b> {{survey.birthplace}}</li>
-           <li><b>Interests</b> {{survey.birthplace}}</li>
-           <li><b>Year in School</b> {{survey.year}}</li>
-           <li><b>Favorite TV show</b>
-             {{survey.TVshow}}</li>
-           <li><b>Favorite Type of Music</b>
-             {{survey.music}}</li>
-           <li><b>Magical Power</b>
-             {{survey.magicalpower}}</li>
-           <li><b>Favorite Food</b>
-             {{survey.favoritefood}}</li>
-           <li><b>Favorite Holiday</b>
-             {{survey.favoriteholiday}}</li>
-           <li><b>BirthPlace</b> {{survey.birthplace}}</li>
+  <h2>Select Friends to meet!</h2>
+
+	{% for survey in surveys %}
+
+		<div class="bg-info">
+			<form method="POST" action="/requestConnection">
+				 <h2>Potential Friend number {{survey.id}}</h2>
+				 <ul>
+					 <li><b>BirthPlace</b> {{survey.birthplace}}</li>
+					 <li><b>Interests</b> {{survey.interests}}</li>
+					 <li><b>Year in School</b> {{survey.year}}</li>
+					 <li><b>Favorite TV show</b>
+						 {{survey.TVshow}}</li>
+					 <li><b>Favorite Type of Music</b>
+						 {{survey.music}}</li>
+					 <li><b>Magical Power</b>
+						 {{survey.magicalpower}}</li>
+					 <li><b>Favorite Food</b>
+						 {{survey.favoritefood}}</li>
+					 <li><b>Favorite Holiday</b>
+						 {{survey.favoriteholiday}}</li>
+					 <li><b>BirthPlace</b> {{survey.birthplace}}</li>
 
 
-         </ul>
-         <input type="hidden" name="surveyNumber" value="{{survey.id}}">
-         <input class="btn btn-lg btn-danger" type="submit" value="I'd like to meet you!">
-       </form>
-    </div>
-    <hr>
-    {% endfor %}
+				 </ul>
+				 <input type="hidden" name="surveyNumber" value="{{survey.id}}">
+					<input type="hidden" name="who" value="{{survey.who}}">
+				 <input class="btn btn-lg btn-danger" type="submit" value="I'd like to meet you!">
+			 </form>
+		</div>
+		<hr>
+		{% endfor %}
+
+  
 
 </div>
 

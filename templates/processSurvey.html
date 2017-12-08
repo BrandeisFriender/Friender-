@@ -13,7 +13,7 @@
 <div class="text-left">
 
   {% for survey in surveys %}
-  
+
     <div class="bg-info">
       <form method="POST" action="/requestConnection">
          <h2>Potential Friend number {{survey.id}}</h2>
@@ -36,6 +36,7 @@
 
          </ul>
          <input type="hidden" name="surveyNumber" value="{{survey.id}}">
+				  <input type="hidden" name="who" value="{{survey.who}}">
          <input class="btn btn-lg btn-danger" type="submit" value="I'd like to meet you!">
        </form>
     </div>
