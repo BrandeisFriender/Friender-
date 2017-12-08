@@ -15,11 +15,11 @@ from datetime import datetime
 app = Flask(__name__)
 # DEVELOPMENT at 127.0.0.1:5000
 app.config['GOOGLE_ID'] = '246096591118-ti33uv184e4m1bib9grgn8alm45btadb.apps.googleusercontent.com'
-app.config['GOOGLE_SECRET'] = 'oXKpbvplgNaAOgLHSZUwd1XG'
+app.config['GOOGLE_SECRET'] = 'iqgLqu6pXgLuHsZFq6nvxDX3'
 
 # PRODUCTION  at http://gracehopper.cs-i.brandeis.edu:5500
 #app.config['GOOGLE_ID'] = '783502545148-q929ksjd9e2cmajka28k0p3f73ga8g29.apps.googleusercontent.com'
-#app.config['GOOGLE_SECRET'] = 'iqgLqu6pXgLuHsZFq6nvxDX3'
+#app.config['GOOGLE_SECRET'] = 'oXKpbvplgNaAOgLHSZUwd1XG'
 
 
 app.debug = True
